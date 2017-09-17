@@ -22,6 +22,8 @@ $(document).ready(function(){
     //$(this).addClass("form-control");
 	//$(':input,:checkbox,:radio').addClass('YOUR_CLASSNAME');
 	$('input[type=text]').addClass('form-control');
+    $('input[type=email]').addClass('form-control');
+    $('input[type=tel]').addClass('form-control');
 	$('select').addClass('form-control');
 });
 /*$("[data-toggle=popover]").popover({
@@ -46,7 +48,7 @@ $(document).ready(function(){
 	if ($form->getTitle() == 'Additional Details' || $form->getTitle() == 'Contact Details'){
 		echo '<div class="form">';
 	} else {
-		echo '<div class="form-inline">';
+		echo '<div class="form-horizontal">';
 	}
 	
     // Form fields, each with corresponding errors follows. Fields marked
@@ -66,7 +68,7 @@ $(document).ready(function(){
         <div class="form-group"> 
 		    <!--<button type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" data-content="Default popover">Popover</button>-->
             <?php if (!$field->isBlockLevel()) { ?>
-                <div class="field-label"><label data-toggle="popover" title="<?php if ($field->get('hint')) echo Format::htmlchars($field->getLocal('label')); ?>" data-content="<?php echo ($field->getLocal('hint'))?>" for="<?php echo $field->getFormName(); ?>"><span class="<?php
+                <div class="col-sm-2 control-label"><label data-toggle="popover" title="<?php if ($field->get('hint')) echo Format::htmlchars($field->getLocal('label')); ?>" data-content="<?php echo ($field->getLocal('hint'))?>" for="<?php echo $field->getFormName(); ?>"><span class="<?php
                     if ($field->isRequiredForUsers()) echo 'required'; ?>">
                 <?php echo Format::htmlchars($field->getLocal('label')); ?>
             <?php if ($field->isRequiredForUsers()) { ?>
@@ -84,7 +86,7 @@ $(document).ready(function(){
             <?php
             }
 			//Renders Forms
-			?><div class="field-form"><?php
+			?><div class="col-sm-10"><?php
             $field->render(array('client'=>true));?>
 			</div><?php
             ?></label><?php

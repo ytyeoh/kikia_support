@@ -36,7 +36,25 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
 <form id="ticketForm" method="post" action="open.php" enctype="multipart/form-data">
   <?php csrf_token(); ?>
   <input type="hidden" name="a" value="open">
-
+        <?php
+         if (!$thisclient) {
+             $uform = UserForm::getUserForm()->getForm($_POST);
+             if ($_POST) $uform->isValid();
+            $uform->render(false);
+         }
+         else { ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">User Info</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-xs-3"><?php echo __('EmaÏil'); ?>:</div><div class="col-xs-9"><?php
+                     echo $thisclient->getEmail(); ?></div>
+                    <div class="col-xs-3"><?php echo __('Client'); ?>:</div><div class="col-xs-9"><?php
+                     echo Format::htmlchars($thisclient->getName()); ?></div>
+                 </div>
+             </div>
+         <?php } ?>
         <div class="panel panel-default">
 
             <div class="panel-heading">
